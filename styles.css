@@ -216,6 +216,41 @@ footer {
   background: linear-gradient(135deg, #212529 0%, #343a40 100%) !important;
 }
 
+/* CA Address Container */
+.ca-address-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin: 0.5rem 0;
+}
+
+.ca-address-display {
+  font-family: 'Courier New', monospace;
+  font-weight: 600;
+  color: #495057;
+  background: #f8f9fa;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  border: 1px solid #dee2e6;
+}
+
+.copy-ca-btn {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.75rem;
+  transition: all 0.3s ease;
+}
+
+.copy-ca-btn:hover {
+  transform: scale(1.1);
+}
+
+.copy-ca-btn.copied {
+  background-color: #198754;
+  border-color: #198754;
+  color: white;
+}
+
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 8px;

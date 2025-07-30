@@ -119,28 +119,58 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Copy to Clipboard Functionality
     function initCopyToClipboard() {
-        const caAddress = 'Ci7F8StvnrSAFqNQN5wQRNP3FoALaRD15WQiCz1dpump';
+        const fullCaAddress = 'Ci7F8StvnrSAFqNQN5wQRNP3FoALaRD15WQiCz1dpump';
         
-        // Create copy button for CA address
-        const caCard = document.querySelector('.connect-card:last-child');
-        if (caCard) {
-            const copyBtn = document.createElement('button');
-            copyBtn.className = 'btn btn-sm btn-outline-primary mt-2';
-            copyBtn.innerHTML = '<i class="fas fa-copy me-1"></i>Copy Address';
+        // Function to truncate CA address
+        function truncateAddress(address) {
+            if (address.length <= 8) return address;
+            return address.substring(0, 4) + '...' + address.substring(address.length - 4);
+        }
+        
+        // Update the display with truncated address
+        const caAddressDisplay = document.querySelector('.ca-address-display');
+        if (caAddressDisplay) {
+            caAddressDisplay.textContent = truncateAddress(fullCaAddress);
+        }
+        
+        // Handle copy button click
+        const copyBtn = document.querySelector('.copy-ca-btn');
+        if (copyBtn) {
             copyBtn.addEventListener('click', () => {
-                navigator.clipboard.writeText(caAddress).then(() => {
-                    copyBtn.innerHTML = '<i class="fas fa-check me-1"></i>Copied!';
-                    copyBtn.classList.remove('btn-outline-primary');
-                    copyBtn.classList.add('btn-success');
+                navigator.clipboard.writeText(fullCaAddress).then(() => {
+                    // Change button appearance
+                    copyBtn.classList.add('copied');
+                    copyBtn.innerHTML = '<i class="fas fa-check"></i>';
                     
+                    // Show success message
+                    const originalText = copyBtn.getAttribute('title');
+                    copyBtn.setAttribute('title', 'Address copied!');
+                    
+                    // Reset after 2 seconds
                     setTimeout(() => {
-                        copyBtn.innerHTML = '<i class="fas fa-copy me-1"></i>Copy Address';
-                        copyBtn.classList.remove('btn-success');
-                        copyBtn.classList.add('btn-outline-primary');
+                        copyBtn.classList.remove('copied');
+                        copyBtn.innerHTML = '<i class="fas fa-copy"></i>';
+                        copyBtn.setAttribute('title', originalText);
+                    }, 2000);
+                }).catch(err => {
+                    console.error('Failed to copy address:', err);
+                    // Fallback for older browsers
+                    const textArea = document.createElement('textarea');
+                    textArea.value = fullCaAddress;
+                    document.body.appendChild(textArea);
+                    textArea.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(textArea);
+                    
+                    // Show success even with fallback
+                    copyBtn.classList.add('copied');
+                    copyBtn.innerHTML = '<i class="fas fa-check"></i>';
+                    setTimeout(() => {
+                        copyBtn.classList.remove('copied');
+                        copyBtn.innerHTML = '<i class="fas fa-copy"></i>';
                     }, 2000);
                 });
             });
-            caCard.appendChild(copyBtn);
         }
     }
     
