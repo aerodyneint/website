@@ -119,6 +119,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Copy to Clipboard Functionality
     function initCopyToClipboard() {
+        console.log('initCopyToClipboard function called');
         const fullCaAddress = 'Ci7F8StvnrSAFqNQN5wQRNP3FoALaRD15WQiCz1dpump';
         
         // Function to truncate CA address
@@ -131,46 +132,92 @@ document.addEventListener('DOMContentLoaded', function() {
         const caAddressDisplay = document.querySelector('.ca-address-display');
         if (caAddressDisplay) {
             caAddressDisplay.textContent = truncateAddress(fullCaAddress);
+            console.log('CA address display updated');
+        } else {
+            console.log('CA address display not found');
         }
         
         // Handle copy button click
         const copyBtn = document.querySelector('.copy-ca-btn');
+        console.log('Copy button found:', copyBtn);
+        
         if (copyBtn) {
-            copyBtn.addEventListener('click', () => {
-                navigator.clipboard.writeText(fullCaAddress).then(() => {
-                    // Change button appearance
-                    copyBtn.classList.add('copied');
-                    copyBtn.innerHTML = '<i class="fas fa-check"></i>';
-                    
-                    // Show success message
-                    const originalText = copyBtn.getAttribute('title');
-                    copyBtn.setAttribute('title', 'Address copied!');
-                    
-                    // Reset after 2 seconds
-                    setTimeout(() => {
-                        copyBtn.classList.remove('copied');
-                        copyBtn.innerHTML = '<i class="fas fa-copy"></i>';
-                        copyBtn.setAttribute('title', originalText);
-                    }, 2000);
-                }).catch(err => {
-                    console.error('Failed to copy address:', err);
+            copyBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                console.log('Copy button clicked');
+                
+                // Try modern clipboard API first
+                if (navigator.clipboard && navigator.clipboard.writeText) {
+                    navigator.clipboard.writeText(fullCaAddress).then(() => {
+                        console.log('Address copied successfully');
+                        // Change button appearance
+                        this.classList.add('copied');
+                        this.innerHTML = '<i class="fas fa-check"></i>';
+                        
+                        // Show success message
+                        const originalText = this.getAttribute('title');
+                        this.setAttribute('title', 'Address copied!');
+                        
+                        // Reset after 2 seconds
+                        setTimeout(() => {
+                            this.classList.remove('copied');
+                            this.innerHTML = '<i class="fas fa-copy"></i>';
+                            this.setAttribute('title', originalText);
+                        }, 2000);
+                    }).catch(err => {
+                        console.error('Modern clipboard API failed:', err);
+                        // Fallback to execCommand
+                        copyToClipboardFallback(fullCaAddress, this);
+                    });
+                } else {
+                    console.log('Using fallback copy method');
                     // Fallback for older browsers
-                    const textArea = document.createElement('textarea');
-                    textArea.value = fullCaAddress;
-                    document.body.appendChild(textArea);
-                    textArea.select();
-                    document.execCommand('copy');
-                    document.body.removeChild(textArea);
-                    
-                    // Show success even with fallback
-                    copyBtn.classList.add('copied');
-                    copyBtn.innerHTML = '<i class="fas fa-check"></i>';
-                    setTimeout(() => {
-                        copyBtn.classList.remove('copied');
-                        copyBtn.innerHTML = '<i class="fas fa-copy"></i>';
-                    }, 2000);
-                });
+                    copyToClipboardFallback(fullCaAddress, this);
+                }
             });
+        } else {
+            console.log('Copy button not found in DOM');
+        }
+        
+        // Fallback copy function
+        function copyToClipboardFallback(text, button) {
+            try {
+                const textArea = document.createElement('textarea');
+                textArea.value = text;
+                textArea.style.position = 'fixed';
+                textArea.style.left = '-999999px';
+                textArea.style.top = '-999999px';
+                document.body.appendChild(textArea);
+                textArea.focus();
+                textArea.select();
+                
+                const successful = document.execCommand('copy');
+                document.body.removeChild(textArea);
+                
+                if (successful) {
+                    console.log('Address copied using fallback method');
+                    // Show success
+                    button.classList.add('copied');
+                    button.innerHTML = '<i class="fas fa-check"></i>';
+                    
+                    const originalText = button.getAttribute('title');
+                    button.setAttribute('title', 'Address copied!');
+                    
+                    setTimeout(() => {
+                        button.classList.remove('copied');
+                        button.innerHTML = '<i class="fas fa-copy"></i>';
+                        button.setAttribute('title', originalText);
+                    }, 2000);
+                } else {
+                    console.error('Fallback copy failed');
+                    alert('Failed to copy address. Please copy manually: ' + text);
+                }
+            } catch (err) {
+                console.error('Fallback copy error:', err);
+                alert('Failed to copy address. Please copy manually: ' + text);
+            }
         }
     }
     
