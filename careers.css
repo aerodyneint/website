@@ -1,0 +1,473 @@
+/* Careers Page Specific Styles */
+
+/* ===== CAREERS HERO ===== */
+.careers-hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  background: var(--gradient-hero);
+  overflow: hidden;
+}
+
+.careers-hero .hero-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+}
+
+.careers-hero .hero-particles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
+  animation: float 20s ease-in-out infinite;
+}
+
+.careers-hero .hero-gradient {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.8) 0%, rgba(118, 75, 162, 0.8) 100%);
+}
+
+.careers-hero .hero-content {
+  position: relative;
+  z-index: 2;
+  color: var(--white);
+}
+
+/* ===== CULTURE SECTION ===== */
+.culture-section {
+  padding: var(--spacing-3xl) 0;
+  background: var(--gray-50);
+}
+
+.culture-card {
+  text-align: center;
+  padding: var(--spacing-xl);
+  background: var(--white);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-md);
+  transition: all var(--transition-normal);
+  height: 100%;
+}
+
+.culture-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-xl);
+}
+
+.culture-icon {
+  width: 80px;
+  height: 80px;
+  background: var(--gradient-primary);
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto var(--spacing-lg);
+  color: var(--white);
+  font-size: var(--font-size-2xl);
+}
+
+/* ===== OPENINGS SECTION ===== */
+.openings-section {
+  padding: var(--spacing-3xl) 0;
+  background: var(--white);
+}
+
+.job-card {
+  background: var(--white);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg);
+  transition: all var(--transition-normal);
+  height: 100%;
+  overflow: hidden;
+  border: 1px solid var(--gray-200);
+}
+
+.job-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-2xl);
+  border-color: var(--primary);
+}
+
+.job-header {
+  background: var(--gradient-primary);
+  color: var(--white);
+  padding: var(--spacing-lg);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.job-icon {
+  width: 60px;
+  height: 60px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--white);
+  font-size: var(--font-size-xl);
+  flex-shrink: 0;
+}
+
+.job-title h4 {
+  margin: 0;
+  font-weight: 700;
+  font-size: var(--font-size-lg);
+}
+
+.job-type {
+  font-size: var(--font-size-sm);
+  opacity: 0.9;
+  font-weight: 500;
+}
+
+.job-body {
+  padding: var(--spacing-lg);
+}
+
+.job-body p {
+  color: var(--gray-600);
+  margin-bottom: var(--spacing-lg);
+  font-size: var(--font-size-base);
+}
+
+.job-requirements {
+  margin-bottom: var(--spacing-lg);
+}
+
+.job-requirements h6 {
+  color: var(--gray-800);
+  font-weight: 600;
+  margin-bottom: var(--spacing-sm);
+  font-size: var(--font-size-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.job-requirements ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.job-requirements li {
+  color: var(--gray-600);
+  font-size: var(--font-size-sm);
+  margin-bottom: var(--spacing-xs);
+  padding-left: var(--spacing-md);
+  position: relative;
+}
+
+.job-requirements li::before {
+  content: '•';
+  color: var(--primary);
+  font-weight: bold;
+  position: absolute;
+  left: 0;
+}
+
+.job-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-xs);
+}
+
+.tag {
+  background: var(--gray-100);
+  color: var(--gray-700);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-xs);
+  font-weight: 500;
+  border: 1px solid var(--gray-200);
+}
+
+/* ===== BENEFITS SECTION ===== */
+.benefits-section {
+  padding: var(--spacing-3xl) 0;
+  background: var(--gray-50);
+}
+
+.benefit-card {
+  text-align: center;
+  padding: var(--spacing-lg);
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  transition: all var(--transition-normal);
+  height: 100%;
+}
+
+.benefit-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
+}
+
+.benefit-icon {
+  width: 60px;
+  height: 60px;
+  background: var(--gradient-secondary);
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto var(--spacing-md);
+  color: var(--white);
+  font-size: var(--font-size-xl);
+}
+
+.benefit-card h5 {
+  color: var(--gray-800);
+  font-weight: 600;
+  margin-bottom: var(--spacing-sm);
+}
+
+.benefit-card p {
+  color: var(--gray-600);
+  font-size: var(--font-size-sm);
+  margin: 0;
+}
+
+/* ===== EQUAL OPPORTUNITY SECTION ===== */
+.eoe-section {
+  padding: var(--spacing-3xl) 0;
+  background: var(--white);
+}
+
+.eoe-card {
+  background: var(--white);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-xl);
+  overflow: hidden;
+  border: 2px solid var(--gray-200);
+}
+
+.eoe-header {
+  background: var(--gradient-dark);
+  color: var(--white);
+  padding: var(--spacing-xl);
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-md);
+}
+
+.eoe-header i {
+  font-size: var(--font-size-2xl);
+}
+
+.eoe-header h3 {
+  margin: 0;
+  font-weight: 700;
+}
+
+.eoe-content {
+  padding: var(--spacing-xl);
+}
+
+.eoe-content p {
+  color: var(--gray-700);
+  line-height: 1.7;
+  margin-bottom: var(--spacing-lg);
+  font-size: var(--font-size-base);
+}
+
+.eoe-commitments {
+  margin-top: var(--spacing-xl);
+  padding-top: var(--spacing-lg);
+  border-top: 1px solid var(--gray-200);
+}
+
+.eoe-commitments h5 {
+  color: var(--gray-800);
+  font-weight: 600;
+  margin-bottom: var(--spacing-md);
+}
+
+.eoe-commitments ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.eoe-commitments li {
+  color: var(--gray-600);
+  font-size: var(--font-size-base);
+  margin-bottom: var(--spacing-sm);
+  padding-left: var(--spacing-lg);
+  position: relative;
+}
+
+.eoe-commitments li::before {
+  content: '✓';
+  color: var(--success);
+  font-weight: bold;
+  position: absolute;
+  left: 0;
+}
+
+/* ===== APPLY SECTION ===== */
+.apply-section {
+  padding: var(--spacing-3xl) 0;
+  background: var(--gradient-primary);
+  color: var(--white);
+}
+
+.apply-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: var(--radius-xl);
+  padding: var(--spacing-2xl);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.apply-card h3 {
+  color: var(--white);
+  font-weight: 700;
+  margin-bottom: var(--spacing-lg);
+}
+
+.apply-card p {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: var(--font-size-lg);
+  margin-bottom: var(--spacing-xl);
+}
+
+.apply-buttons {
+  display: flex;
+  gap: var(--spacing-md);
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.apply-buttons .btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-md) var(--spacing-xl);
+  border-radius: var(--radius-full);
+  font-weight: 600;
+  transition: all var(--transition-normal);
+  text-decoration: none;
+}
+
+.apply-buttons .btn-primary {
+  background: var(--white);
+  color: var(--primary);
+  border: none;
+}
+
+.apply-buttons .btn-primary:hover {
+  background: var(--gray-100);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+  color: var(--primary);
+}
+
+.apply-buttons .btn-outline-primary {
+  border-color: rgba(255, 255, 255, 0.3);
+  color: var(--white);
+}
+
+.apply-buttons .btn-outline-primary:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.5);
+  color: var(--white);
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 768px) {
+  .job-header {
+    flex-direction: column;
+    text-align: center;
+    gap: var(--spacing-sm);
+  }
+  
+  .job-icon {
+    margin-bottom: var(--spacing-sm);
+  }
+  
+  .apply-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .apply-buttons .btn {
+    width: 100%;
+    max-width: 300px;
+    justify-content: center;
+  }
+  
+  .eoe-header {
+    flex-direction: column;
+    gap: var(--spacing-sm);
+  }
+}
+
+@media (max-width: 576px) {
+  .job-card {
+    margin-bottom: var(--spacing-lg);
+  }
+  
+  .benefit-card {
+    margin-bottom: var(--spacing-lg);
+  }
+  
+  .eoe-content {
+    padding: var(--spacing-lg);
+  }
+  
+  .apply-card {
+    padding: var(--spacing-lg);
+  }
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.job-card,
+.culture-card,
+.benefit-card {
+  animation: slideInUp 0.6s ease-out;
+}
+
+.job-card:nth-child(1) { animation-delay: 0.1s; }
+.job-card:nth-child(2) { animation-delay: 0.2s; }
+.job-card:nth-child(3) { animation-delay: 0.3s; }
+.job-card:nth-child(4) { animation-delay: 0.4s; }
+.job-card:nth-child(5) { animation-delay: 0.5s; }
+
+.culture-card:nth-child(1) { animation-delay: 0.1s; }
+.culture-card:nth-child(2) { animation-delay: 0.2s; }
+.culture-card:nth-child(3) { animation-delay: 0.3s; }
+
+.benefit-card:nth-child(1) { animation-delay: 0.1s; }
+.benefit-card:nth-child(2) { animation-delay: 0.2s; }
+.benefit-card:nth-child(3) { animation-delay: 0.3s; }
+.benefit-card:nth-child(4) { animation-delay: 0.4s; } 
